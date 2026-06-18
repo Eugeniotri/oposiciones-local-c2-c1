@@ -1,0 +1,152 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  color: #222;
+  line-height: 1.6;
+}
+
+.cabecera {
+  background: #1f3c88;
+  color: white;
+  padding: 28px 20px;
+  text-align: center;
+}
+
+.cabecera h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.cabecera p {
+  margin: 8px 0 0;
+}
+
+.contenedor {
+  max-width: 1000px;
+  margin: 25px auto;
+  padding: 0 16px;
+}
+
+.tarjeta {
+  background: white;
+  padding: 22px;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.boton {
+  display: inline-block;
+  background: #1f3c88;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.boton:hover {
+  opacity: 0.9;
+}
+
+.boton.secundario {
+  background: #555;
+}
+
+.bloqueado {
+  opacity: 0.65;
+}
+
+.bloque {
+  background: #eef3ff;
+  border-left: 6px solid #1f3c88;
+  padding: 15px 20px;
+  margin: 18px 0;
+  border-radius: 8px;
+}
+
+.regla {
+  background: #fff7e6;
+  border-left: 6px solid #f0a500;
+  padding: 15px 20px;
+  margin: 18px 0;
+  border-radius: 8px;
+}
+
+.alerta {
+  background: #ffecec;
+  border-left: 6px solid #d9534f;
+  padding: 15px 20px;
+  margin: 18px 0;
+  border-radius: 8px;
+}
+
+.ok {
+  background: #eafaf1;
+  border-left: 6px solid #28a745;
+  padding: 15px 20px;
+  margin: 18px 0;
+  border-radius: 8px;
+}
+
+.pregunta {
+  border-bottom: 1px solid #ddd;
+  padding: 18px 0;
+}
+
+.opcion {
+  display: block;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.resultado {
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.correcta {
+  color: #198754;
+}
+
+.incorrecta {
+  color: #dc3545;
+}
+
+.pie {
+  text-align: center;
+  padding: 20px;
+  color: #666;
+  font-size: 14px;
+}
+
+.volver {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cabecera h1 {
+    font-size: 1.6rem;
+  }
+
+  .tarjeta {
+    padding: 18px;
+  }
+}

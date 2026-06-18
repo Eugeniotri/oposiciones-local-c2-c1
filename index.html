@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oposiciones App</title>
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="cabecera">
+    <h1>Oposiciones App</h1>
+    <p>Preparación personal · Bloque común · Administración local</p>
+  </header>
+
+  <main class="contenedor">
+    <section class="tarjeta">
+      <h2>Panel principal</h2>
+      <p>Objetivo: preparar C1 Informática, aprovechando el bloque común para C2 y C1 Administrativo.</p>
+    </section>
+
+    <section class="grid">
+      <article class="tarjeta">
+        <h3>01 · Constitución Española</h3>
+        <p>Semana 1: Título Preliminar. Artículo 1.</p>
+        <a class="boton" href="temas/constitucion/articulo_01.html">Estudiar Artículo 1</a>
+      </article>
+
+      <article class="tarjeta bloqueado">
+        <h3>02 · Estatuto Valenciano</h3>
+        <p>Pendiente.</p>
+      </article>
+
+      <article class="tarjeta bloqueado">
+        <h3>03 · Ley 39/2015</h3>
+        <p>Pendiente.</p>
+      </article>
+
+      <article class="tarjeta bloqueado">
+        <h3>04 · Ley 40/2015</h3>
+        <p>Pendiente.</p>
+      </article>
+    </section>
+
+    <section class="tarjeta">
+      <h2>Progreso</h2>
+      <p id="resumenProgreso">Cargando progreso...</p>
+      <button class="boton secundario" onclick="reiniciarProgreso()">Reiniciar progreso</button>
+    </section>
+  </main>
+
+  <footer class="pie">
+    Método de estudio por semanas · Repaso por arrastre · Tests de blindaje
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
