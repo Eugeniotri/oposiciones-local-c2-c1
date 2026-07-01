@@ -1,0 +1,308 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test blindaje artículos 6-9</title>
+    <link rel="stylesheet" href="../../css/estilos.css">
+</head>
+
+<body>
+
+    <header class="cabecera">
+        <h1>Constitución Española</h1>
+        <p>Test blindaje · Artículos 6 al 9</p>
+    </header>
+
+    <main class="contenedor">
+
+        <p class="volver">
+            <a href="../../index.html">← Volver al inicio</a>
+        </p>
+
+        <section class="tarjeta">
+            <h2>Objetivo</h2>
+            <div class="ok">
+                <p><strong>30 preguntas tipo oposición.</strong></p>
+                <p>Sin reglas mnemotécnicas. Solo contenido real de examen.</p>
+                <p>Al marcar una respuesta verás si está bien o mal, con explicación.</p>
+            </div>
+        </section>
+
+        <section class="tarjeta">
+            <h2>Test de blindaje</h2>
+
+            <div id="contenedorTest"></div>
+
+            <button class="boton" onclick="calcularResultado()">Ver resultado final</button>
+
+            <div id="resultado"></div>
+        </section>
+
+    </main>
+
+    <footer class="pie">
+        Test blindaje · Constitución · Artículos 6-9
+    </footer>
+
+    <script>
+        const preguntas = [
+            {
+                texto: "Los partidos políticos expresan:",
+                opciones: ["La soberanía nacional", "El pluralismo político", "La voluntad popular", "La representación parlamentaria"],
+                correcta: 1,
+                explicacion: "Artículo 6: los partidos políticos expresan el pluralismo político."
+            },
+            {
+                texto: "Los partidos políticos concurren a:",
+                opciones: ["La formación de la soberanía nacional", "La formación y manifestación de la voluntad popular", "La elección directa del Gobierno", "La defensa de intereses económicos y sociales"],
+                correcta: 1,
+                explicacion: "La frase literal es: formación y manifestación de la voluntad popular."
+            },
+            {
+                texto: "Los partidos políticos son:",
+                opciones: ["El único instrumento para la participación política", "El principal instrumento para la representación política", "Instrumento fundamental para la participación política", "Instrumento fundamental para la defensa económica"],
+                correcta: 2,
+                explicacion: "No dice único ni principal. Dice instrumento fundamental para la participación política."
+            },
+            {
+                texto: "La creación y actividad de los partidos políticos son libres:",
+                opciones: ["Sin limitación alguna", "Dentro del respeto a la Constitución", "Dentro del respeto a la Constitución y a la ley", "Dentro del respeto a la ley y los Estatutos"],
+                correcta: 2,
+                explicacion: "La libertad existe, pero dentro del respeto a la Constitución y a la ley."
+            },
+            {
+                texto: "La estructura interna y funcionamiento de los partidos deberán ser:",
+                opciones: ["Constitucionales", "Representativos", "Democráticos", "Parlamentarios"],
+                correcta: 2,
+                explicacion: "Artículo 6: estructura interna y funcionamiento democráticos."
+            },
+            {
+                texto: "Los sindicatos y asociaciones empresariales contribuyen a la defensa y promoción de:",
+                opciones: ["Intereses políticos y sociales", "Intereses económicos y sociales que les son propios", "Intereses laborales exclusivamente", "Intereses constitucionales"],
+                correcta: 1,
+                explicacion: "Artículo 7: intereses económicos y sociales que les son propios."
+            },
+            {
+                texto: "¿Cuál pertenece al artículo 7?",
+                opciones: ["Expresan el pluralismo político", "Concurren a la formación de la voluntad popular", "Defienden y promueven intereses económicos y sociales", "Son instrumento fundamental para la participación política"],
+                correcta: 2,
+                explicacion: "Artículo 7 = sindicatos y asociaciones empresariales = intereses económicos y sociales."
+            },
+            {
+                texto: "¿Cuál es incorrecta sobre sindicatos y asociaciones empresariales?",
+                opciones: ["Su creación es libre dentro del respeto a la Constitución y a la ley", "Su funcionamiento deberá ser democrático", "Defienden intereses económicos y sociales", "Son instrumento fundamental para la participación política"],
+                correcta: 3,
+                explicacion: "Instrumento fundamental para la participación política corresponde al artículo 6, no al 7."
+            },
+            {
+                texto: "Las Fuerzas Armadas están constituidas por:",
+                opciones: ["Ejército de Tierra, Guardia Civil y Policía Nacional", "Ejército de Tierra, Armada y Ejército del Aire", "Ejército de Tierra, Armada y Policía Militar", "Ejército, Policía Nacional y Guardia Civil"],
+                correcta: 1,
+                explicacion: "Artículo 8: Ejército de Tierra, Armada y Ejército del Aire."
+            },
+            {
+                texto: "La misión de las Fuerzas Armadas incluye:",
+                opciones: ["Garantizar la seguridad ciudadana", "Garantizar el orden público", "Garantizar la soberanía e independencia de España", "Defender exclusivamente la Constitución"],
+                correcta: 2,
+                explicacion: "Su misión incluye garantizar la soberanía e independencia de España."
+            },
+            {
+                texto: "¿Cuál NO forma parte de la misión de las Fuerzas Armadas?",
+                opciones: ["Garantizar la soberanía", "Garantizar la independencia", "Garantizar la seguridad ciudadana", "Defender la integridad territorial"],
+                correcta: 2,
+                explicacion: "La seguridad ciudadana no es misión del artículo 8."
+            },
+            {
+                texto: "La expresión correcta del artículo 8 es:",
+                opciones: ["Defender la Constitución", "Defender el ordenamiento constitucional", "Defender el sistema constitucional", "Defender la legalidad constitucional"],
+                correcta: 1,
+                explicacion: "La expresión literal es ordenamiento constitucional."
+            },
+            {
+                texto: "Las bases de la organización militar se regularán por:",
+                opciones: ["Ley ordinaria", "Reglamento", "Ley orgánica", "Real Decreto"],
+                correcta: 2,
+                explicacion: "Artículo 8.2: una ley orgánica regulará las bases de la organización militar."
+            },
+            {
+                texto: "Según el artículo 9.1, están sujetos a la Constitución y al resto del ordenamiento jurídico:",
+                opciones: ["Solo los ciudadanos", "Solo los poderes públicos", "Los ciudadanos y los poderes públicos", "Todos los españoles"],
+                correcta: 2,
+                explicacion: "Artículo 9.1: ciudadanos y poderes públicos."
+            },
+            {
+                texto: "La frase correcta del artículo 9.1 es:",
+                opciones: ["Constitución y leyes", "Constitución y resto del ordenamiento jurídico", "Constitución y ordenamiento constitucional", "Constitución y legalidad vigente"],
+                correcta: 1,
+                explicacion: "La literalidad es: Constitución y resto del ordenamiento jurídico."
+            },
+            {
+                texto: "Según el artículo 9.2, corresponde promover condiciones para libertad e igualdad reales y efectivas a:",
+                opciones: ["Los ciudadanos", "El Gobierno", "Los poderes públicos", "Las Cortes Generales"],
+                correcta: 2,
+                explicacion: "Corresponde a los poderes públicos."
+            },
+            {
+                texto: "El artículo 9.2 habla de libertad e igualdad:",
+                opciones: ["Formales y legales", "Reales y efectivas", "Constitucionales y sociales", "Políticas y jurídicas"],
+                correcta: 1,
+                explicacion: "La expresión clave es reales y efectivas."
+            },
+            {
+                texto: "Los poderes públicos deben remover:",
+                opciones: ["Las leyes injustas", "Los obstáculos que impidan o dificulten la plenitud de libertad e igualdad", "Las desigualdades autonómicas", "Los obstáculos administrativos exclusivamente"],
+                correcta: 1,
+                explicacion: "Deben remover obstáculos que impidan o dificulten la plenitud de libertad e igualdad."
+            },
+            {
+                texto: "El artículo 9.2 busca facilitar la participación en la vida:",
+                opciones: ["Política, económica, cultural y social", "Política, laboral, cultural y social", "Política, económica, educativa y social", "Política, económica, judicial y social"],
+                correcta: 0,
+                explicacion: "La secuencia literal es política, económica, cultural y social."
+            },
+            {
+                texto: "¿Cuál SÍ es un principio garantizado por el artículo 9.3?",
+                opciones: ["Igualdad ante la ley", "Libertad ideológica", "Seguridad jurídica", "Pluralismo político"],
+                correcta: 2,
+                explicacion: "Seguridad jurídica pertenece al artículo 9.3, no al artículo 1."
+            },
+            {
+                texto: "¿Cuál NO aparece en el artículo 9.3?",
+                opciones: ["Legalidad", "Jerarquía normativa", "Igualdad ante la ley", "Publicidad de las normas"],
+                correcta: 2,
+                explicacion: "Igualdad ante la ley no está en el artículo 9.3."
+            },
+            {
+                texto: "Una ordenanza municipal contradice la Constitución. ¿Qué principio se vulnera?",
+                opciones: ["Publicidad de las normas", "Jerarquía normativa", "Responsabilidad", "Seguridad jurídica"],
+                correcta: 1,
+                explicacion: "Una norma inferior no puede contradecir una superior: jerarquía normativa."
+            },
+            {
+                texto: "Una norma no se publica y aun así se multa por incumplirla. ¿Qué principio falla?",
+                opciones: ["Publicidad de las normas", "Legalidad", "Responsabilidad", "Interdicción de la arbitrariedad"],
+                correcta: 0,
+                explicacion: "Si no se publica, los ciudadanos no pueden conocerla: publicidad de las normas."
+            },
+            {
+                texto: "Una ley nueva sanciona una conducta que era legal cuando se realizó. ¿Qué principio se vulnera?",
+                opciones: ["Responsabilidad", "Irretroactividad", "Jerarquía normativa", "Seguridad jurídica"],
+                correcta: 1,
+                explicacion: "No se puede sancionar retroactivamente una conducta que era legal."
+            },
+            {
+                texto: "El Ayuntamiento causa daños por una obra pública y no quiere indemnizar. ¿Qué principio se relaciona más?",
+                opciones: ["Responsabilidad", "Publicidad", "Legalidad", "Jerarquía normativa"],
+                correcta: 0,
+                explicacion: "La Administración debe responder por los daños que cause cuando proceda."
+            },
+            {
+                texto: "El alcalde concede una licencia a un amigo y la deniega a otro sin motivo. ¿Qué principio vulnera?",
+                opciones: ["Irretroactividad", "Publicidad de las normas", "Interdicción de la arbitrariedad", "Seguridad jurídica"],
+                correcta: 2,
+                explicacion: "Actuar por capricho o sin justificación vulnera la interdicción de la arbitrariedad."
+            },
+            {
+                texto: "¿Cuál de estas parejas es correcta?",
+                opciones: ["Artículo 6 - Sindicatos", "Artículo 7 - Partidos políticos", "Artículo 8 - Fuerzas Armadas", "Artículo 9 - Bandera"],
+                correcta: 2,
+                explicacion: "Artículo 8 = Fuerzas Armadas."
+            },
+            {
+                texto: "¿Cuál de estas parejas es incorrecta?",
+                opciones: ["Artículo 6 - Partidos políticos", "Artículo 7 - Sindicatos y asociaciones empresariales", "Artículo 8 - Seguridad ciudadana", "Artículo 9 - Principios del Estado de Derecho"],
+                correcta: 2,
+                explicacion: "El artículo 8 no habla de seguridad ciudadana, sino de Fuerzas Armadas."
+            },
+            {
+                texto: "¿Qué principio impide que los poderes públicos actúen por puro capricho?",
+                opciones: ["Publicidad de las normas", "Interdicción de la arbitrariedad", "Jerarquía normativa", "Irretroactividad"],
+                correcta: 1,
+                explicacion: "La interdicción de la arbitrariedad prohíbe decisiones caprichosas de los poderes públicos."
+            },
+            {
+                texto: "¿Cuál de estos conceptos pertenece al artículo 9.3 y suele confundirse con los valores del artículo 1?",
+                opciones: ["Pluralismo político", "Justicia", "Seguridad jurídica", "Libertad"],
+                correcta: 2,
+                explicacion: "Seguridad jurídica no es valor superior del artículo 1; es principio del artículo 9.3."
+            }
+        ];
+
+        function cargarTest() {
+            const contenedor = document.getElementById("contenedorTest");
+
+            preguntas.forEach((pregunta, indice) => {
+                const bloque = document.createElement("div");
+                bloque.className = "bloque";
+
+                let html = `<h3>${indice + 1}. ${pregunta.texto}</h3>`;
+
+                pregunta.opciones.forEach((opcion, i) => {
+                    html += `
+        <label>
+          <input type="radio" name="p${indice}" value="${i}" onchange="corregirPregunta(${indice}, ${i})">
+          ${String.fromCharCode(97 + i)}) ${opcion}
+        </label><br>
+      `;
+                });
+
+                html += `<p id="feedback${indice}"></p><hr>`;
+
+                bloque.innerHTML = html;
+                contenedor.appendChild(bloque);
+            });
+        }
+
+        function corregirPregunta(indice, respuestaUsuario) {
+            const pregunta = preguntas[indice];
+            const feedback = document.getElementById(`feedback${indice}`);
+
+            if (respuestaUsuario === pregunta.correcta) {
+                feedback.innerHTML = `✅ <strong>Correcta.</strong> ${pregunta.explicacion}`;
+                feedback.className = "correcta";
+            } else {
+                feedback.innerHTML = `❌ <strong>Incorrecta.</strong> La correcta es ${String.fromCharCode(97 + pregunta.correcta)}) ${pregunta.opciones[pregunta.correcta]}. ${pregunta.explicacion}`;
+                feedback.className = "incorrecta";
+            }
+        }
+
+        function calcularResultado() {
+            let nota = 0;
+
+            preguntas.forEach((pregunta, indice) => {
+                const seleccionada = document.querySelector(`input[name="p${indice}"]:checked`);
+
+                if (seleccionada && Number(seleccionada.value) === pregunta.correcta) {
+                    nota++;
+                }
+            });
+
+            let mensaje = "";
+
+            if (nota >= 27) {
+                mensaje = "Excelente. Artículos 6-9 prácticamente blindados.";
+            } else if (nota >= 24) {
+                mensaje = "Muy bien. Hay detalles que repasar antes del examen final.";
+            } else if (nota >= 20) {
+                mensaje = "Aprobado, pero todavía no está blindado.";
+            } else {
+                mensaje = "Necesita repaso. Vuelve a los artículos 6, 7, 8 y 9.";
+            }
+
+            document.getElementById("resultado").innerHTML =
+                `<div class="ok">
+      <h3>Resultado: ${nota} / 30</h3>
+      <p>${mensaje}</p>
+    </div>`;
+        }
+
+        cargarTest();
+    </script>
+
+</body>
+
+</html>
+```
