@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen Título Preliminar</title>
+    <link rel="stylesheet" href="../../css/estilos.css">
+</head>
+
+<body>
+    <header class="cabecera">
+        <h1>Constitución Española</h1>
+        <p>Examen final · Título Preliminar · Artículos 1 al 9</p>
+    </header>
+    <main class="contenedor">
+        <p class="volver"><a href="../../index.html">← Volver al inicio</a></p>
+        <section class="tarjeta">
+            <h2>🎓 Examen final</h2>
+            <div class="ok">
+                <p><strong>50 preguntas tipo oposición.</strong></p>
+                <p>Mezcla artículos 1 al 9, trampas de literalidad y casos prácticos.</p>
+                <p>Al marcar una respuesta verás si está bien o mal. Si fallas, verás la correcta con explicación.</p>
+                <p><strong>Objetivo:</strong> 45/50 o más para considerar el Título Preliminar blindado.</p>
+            </div>
+        </section>
+        <section class="tarjeta">
+            <h2>Preguntas</h2>
+            <div id="contenedorTest"></div>
+            <button class="boton" onclick="calcularResultado()">Ver resultado final</button>
+            <div id="resultado"></div>
+        </section>
+    </main>
+    <footer class="pie">Examen final · Constitución Española · Título Preliminar</footer>
+    <script>
+        const preguntas = [
+            {
+                "texto": "España se constituye en un Estado:",
+                "opciones": [
+                    "Social y democrático",
+                    "Social y democrático de Derecho",
+                    "Democrático y parlamentario",
+                    "Social, autonómico y federal"
+                ],
+                "correcta": 1,
+                "explicacion": "Artículo 1.1: Estado social y democrático de Derecho."
+            },
+            {
+                "texto": "¿Cuál NO es valor superior del ordenamiento jurídico?",
+                "opciones": [
+                    "Libertad",
+                    "Justicia",
+                    "Seguridad jurídica",
+                    "Pluralismo político"
+                ],
+                "correcta": 2,
+                "explicacion": "Seguridad jurídica es del artículo 9.3, no del artículo 1."
+            },
+            {
+                "texto": "La soberanía nacional reside en:",
+                "opciones": [
+                    "Las Cortes Generales",
+                    "El pueblo español",
+                    "El Rey",
+                    "El Gobierno"
+                ],
+                "correcta": 1,
+                "explicacion": "Artículo 1.2: reside en el pueblo español."
+            },
+            {
+                "texto": "La forma política del Estado español es:",
+                "opciones": [
+                    "Monarquía constitucional",
+                    "Monarquía parlamentaria",
+                    "Democracia parlamentaria",
+                    "Estado autonómico"
+                ],
+                "correcta": 1,
+                "explicacion": "Artículo 1.3: Monarquía parlamentaria."
+            },
+            {
+                "texto": "La Constitución se fundamenta en:",
+                "opciones": [
+                    "La unidad territorial",
+                    "La indisoluble unidad de la Nación española",
+                    "La solidaridad entre municipios",
+                    "La soberanía autonómica"
+                ],
+                "correcta": 1,
+                "explicacion": "Artículo 2: indisoluble unidad de la Nación española."
+            },
+            {
+                "texto": "La Nación española es:",
+                "opciones": [
+                    "Patria común e indivisible de todos los españoles",
+                    "Patria única e indivisible",
+                    "Patria común e inseparable",
+                    "Patria común y solidaria"
+                ],
+                "correcta": 0,
+                "explicacion": "La literalidad es patria común e indivisible."
+            },
+            {
+                "texto": "El artículo 2 reconoce y garantiza el derecho a la autonomía de:",
+                "opciones": [
+                    "Comunidades Autónomas",
+                    "Nacionalidades y regiones",
+                    "Municipios y provincias",
+                    "Regiones históricas"
+                ],
+                "correcta": 1,
+                "explicacion": "Artículo 2: nacionalidades y regiones."
+            },
+            {
+                "texto": "La solidaridad del artículo 2 es:",
+                "opciones": [
+                    "Entre Comunidades Autónomas",
+                    "Entre todas ellas",
+                    "Entre provincias",
+                    "Entre ciudadanos"
+                ],
+                "correcta": 1,
+                "explicacion": "Literalmente: solidaridad entre todas ellas."
+            },
+            {
+                "texto": "El castellano es:",
+                "opciones": [
+                    "Lengua nacional",
+                    "Lengua española oficial del Estado",
+                    "Lengua común",
+                    "Lengua oficial autonómica"
+                ],
+                "correcta": 1,
+                "explicacion": "Artículo 3.1: lengua española oficial del Estado."
+            },
+            {
+                "texto": "Respecto al castellano, todos los españoles tienen:",
+                "opciones": [
+                    "Deber de usarlo y derecho a conocerlo",
+                    "Deber de conocerlo y derecho a usarlo",
+                    "Derecho y deber de usarlo",
+                    "Derecho de conocerlo"
+                ],
+                "correcta": 1,
+                "explicacion": "Deber de conocerla y derecho a usarla."
+            },
+            {
+                "texto": "Las demás lenguas españolas serán oficiales:",
+                "opciones": [
+                    "En todo el Estado",
+                    "En sus Comunidades Autónomas según Estatutos",
+                    "Por decisión del Gobierno",
+                    "En provincias bilingües"
+                ],
+                "correcta": 1,
+                "explicacion": "Artículo 3.2: en respectivas CCAA de acuerdo con Estatutos."
+            },
+            {
+                "texto": "La riqueza de las modalidades lingüísticas es:",
+                "opciones": [
+                    "Patrimonio nacional",
+                    "Patrimonio histórico",
+                    "Patrimonio cultural",
+                    "Patrimonio autonómico"
+                ],
+                "correcta": 2,
+                "explicacion": "Artículo 3.3: patrimonio cultural."
+            },
+            {
+                "texto": "La bandera de España tiene:",
+                "opciones": [
+                    "Dos franjas horizontales",
+                    "Tres franjas horizontales",
+                    "Tres franjas verticales",
+                    "Tres colores"
+                ],
+                "correcta": 1,
+                "explicacion": "Artículo 4: tres franjas horizontales."
+            },
+            {
+                "texto": "La franja amarilla de la bandera es:",
+                "opciones": [
+                    "Igual que cada roja",
+                    "Doble que cada roja",
+                    "Triple que cada roja",
+                    "La mitad que las rojas"
+                ],
+                "correcta": 1,
+                "explicacion": "La amarilla tiene doble anchura que cada roja."
+            },
+            {
+                "texto": "Las banderas autonómicas se usan:",
+                "opciones": [
+                    "Sustituyendo a la española",
+                    "Junto a la bandera de España",
+                    "Solo en fiestas",
+                    "Solo en actos autonómicos"
+                ],
+                "correcta": 1,
+                "explicacion": "Artículo 4.2: junto a la bandera de España."
+            },
+            {
+                "texto": "La capital del Estado es:",
+                "opciones": [
+                    "La ciudad de Madrid",
+                    "Madrid capital",
+                    "La villa de Madrid",
+                    "La Comunidad de Madrid"
+                ],
+                "correcta": 2,
+                "explicacion": "Artículo 5: la villa de Madrid."
+            },
+            {
+                "texto": "Los partidos políticos expresan:",
+                "opciones": [
+                    "La soberanía nacional",
+                    "El pluralismo político",
+                    "La voluntad popular",
+                    "La representación parlamentaria"
+                ],
+                "correcta": 1,
+                "explicacion": "Artículo 6: expresan el pluralismo político."
+            },
+            {
+                "texto": "Los partidos políticos concurren a:",
+                "opciones": [
+                    "La formación de la soberanía",
+                    "La formación y manifestación de la voluntad popular",
+                    "La elección del Gobierno",
+                    "La defensa económica"
+                ],
+                "correcta": 1,
+                "explicacion": "Artículo 6: formación y manifestación de la voluntad popular."
+            },
+            {
+                "texto": "Los partidos políticos son:",
+                "opciones": [
+                    "El único instrumento de participación",
+                    "Instrumento fundamental para la participación política",
+                    "Instrumento principal de representación",
+                    "Órgano del Estado"
+                ],
+                "correcta": 1,
+                "explicacion": "No dice único: dice instrumento fundamental."
+            },
+            {
+                "texto": "La creación y actividad de los partidos son libres:",
+                "opciones": [
+                    "Sin límite",
+                    "Dentro del respeto a Constitución y ley",
+                    "Solo dentro de la Constitución",
+                    "Dentro de Estatutos"
+                ],
+                "correcta": 1,
+                "explicacion": "Artículo 6: Constitución y ley."
+            },
+            {
+                "texto": "La estructura interna y funcionamiento de los partidos deben ser:",
+                "opciones": [
+                    "Representativos",
+                    "Constitucionales",
+                    "Democráticos",
+                    "Parlamentarios"
+                ],
+                "correcta": 2,
+                "explicacion": "Artículo 6: democráticos."
+            },
+            {
+                "texto": "Sindicatos y asociaciones empresariales defienden:",
+                "opciones": [
+                    "Intereses políticos",
+                    "Intereses económicos y sociales propios",
+                    "Intereses laborales exclusivamente",
+                    "Intereses constitucionales"
+                ],
+                "correcta": 1,
+                "explicacion": "Artículo 7: intereses económicos y sociales que les son propios."
+            },
+            {
+                "texto": "¿Qué pertenece al artículo 7?",
+                "opciones": [
+                    "Pluralismo político",
+                    "Voluntad popular",
+                    "Defensa y promoción de intereses económicos y sociales",
+                    "Participación política"
+                ],
+                "correcta": 2,
+                "explicacion": "Artículo 7 = sindicatos y asociaciones empresariales."
+            },
+            {
+                "texto": "¿Qué afirmación es incorrecta sobre sindicatos?",
+                "opciones": [
+                    "Son libres dentro de Constitución y ley",
+                    "Funcionamiento democrático",
+                    "Defienden intereses económicos y sociales",
+                    "Son instrumento fundamental para participación política"
+                ],
+                "correcta": 3,
+                "explicacion": "Eso último corresponde al artículo 6."
+            },
+            {
+                "texto": "Las Fuerzas Armadas están constituidas por:",
+                "opciones": [
+                    "Tierra, Guardia Civil y Policía",
+                    "Tierra, Armada y Aire",
+                    "Tierra, Armada y Policía Militar",
+                    "Ejército, Policía y Guardia Civil"
+                ],
+                "correcta": 1,
+                "explicacion": "Artículo 8: Ejército de Tierra, Armada y Ejército del Aire."
+            },
+            {
+                "texto": "La misión de las Fuerzas Armadas incluye:",
+                "opciones": [
+                    "Seguridad ciudadana",
+                    "Orden público",
+                    "Soberanía e independencia de España",
+                    "Exclusivamente defender la Constitución"
+                ],
+                "correcta": 2,
+                "explicacion": "Artículo 8: soberanía e independencia de España."
+            },
+            {
+                "texto": "¿Cuál NO es misión de las Fuerzas Armadas?",
+                "opciones": [
+                    "Soberanía",
+                    "Independencia",
+                    "Seguridad ciudadana",
+                    "Integridad territorial"
+                ],
+                "correcta": 2,
+                "explicacion": "La seguridad ciudadana no aparece en el artículo 8."
+            },
+            {
+                "texto": "La expresión correcta del artículo 8 es:",
+                "opciones": [
+                    "Defender la Constitución",
+                    "Defender el ordenamiento constitucional",
+                    "Defender sistema constitucional",
+                    "Defender legalidad constitucional"
+                ],
+                "correcta": 1,
+                "explicacion": "Literal: ordenamiento constitucional."
+            },
+            {
+                "texto": "La organización militar se regula por:",
+                "opciones": [
+                    "Ley ordinaria",
+                    "Reglamento",
+                    "Ley orgánica",
+                    "Real Decreto"
+                ],
+                "correcta": 2,
+                "explicacion": "Artículo 8.2: ley orgánica."
+            },
+            {
+                "texto": "Según el artículo 9.1 están sujetos a la Constitución y resto del ordenamiento jurídico:",
+                "opciones": [
+                    "Solo ciudadanos",
+                    "Solo poderes públicos",
+                    "Ciudadanos y poderes públicos",
+                    "Todos los españoles"
+                ],
+                "correcta": 2,
+                "explicacion": "Artículo 9.1: ciudadanos y poderes públicos."
+            },
+            {
+                "texto": "La frase correcta del artículo 9.1 es:",
+                "opciones": [
+                    "Constitución y leyes",
+                    "Constitución y resto del ordenamiento jurídico",
+                    "Constitución y ordenamiento constitucional",
+                    "Constitución y legalidad vigente"
+                ],
+                "correcta": 1,
+                "explicacion": "Literalidad: resto del ordenamiento jurídico."
+            },
+            {
+                "texto": "Según el 9.2, corresponde promover libertad e igualdad reales y efectivas a:",
+                "opciones": [
+                    "Ciudadanos",
+                    "Gobierno",
+                    "Poderes públicos",
+                    "Cortes Generales"
+                ],
+                "correcta": 2,
+                "explicacion": "Artículo 9.2: poderes públicos."
+            },
+            {
+                "texto": "El artículo 9.2 habla de libertad e igualdad:",
+                "opciones": [
+                    "Formales y legales",
+                    "Reales y efectivas",
+                    "Políticas y jurídicas",
+                    "Constitucionales y sociales"
+                ],
+                "correcta": 1,
+                "explicacion": "Literal: reales y efectivas."
+            },
+            {
+                "texto": "Los poderes públicos deben remover:",
+                "opciones": [
+                    "Leyes injustas",
+                    "Obstáculos que impidan o dificulten su plenitud",
+                    "Desigualdades autonómicas",
+                    "Obstáculos administrativos"
+                ],
+                "correcta": 1,
+                "explicacion": "Remover obstáculos que impidan o dificulten la plenitud."
+            },
+            {
+                "texto": "El 9.2 facilita participación en la vida:",
+                "opciones": [
+                    "Política, económica, cultural y social",
+                    "Política, laboral, cultural y social",
+                    "Política, económica, educativa y social",
+                    "Política, económica, judicial y social"
+                ],
+                "correcta": 0,
+                "explicacion": "Secuencia literal: política, económica, cultural y social."
+            },
+            {
+                "texto": "¿Cuál SÍ está en el artículo 9.3?",
+                "opciones": [
+                    "Igualdad ante la ley",
+                    "Libertad ideológica",
+                    "Seguridad jurídica",
+                    "Pluralismo político"
+                ],
+                "correcta": 2,
+                "explicacion": "Seguridad jurídica pertenece al artículo 9.3."
+            },
+            {
+                "texto": "¿Cuál NO aparece en 9.3?",
+                "opciones": [
+                    "Legalidad",
+                    "Jerarquía normativa",
+                    "Igualdad ante la ley",
+                    "Publicidad de las normas"
+                ],
+                "correcta": 2,
+                "explicacion": "Igualdad ante la ley no es principio del 9.3."
+            },
+            {
+                "texto": "Una ordenanza contradice la Constitución. ¿Qué principio falla?",
+                "opciones": [
+                    "Publicidad",
+                    "Jerarquía normativa",
+                    "Responsabilidad",
+                    "Irretroactividad"
+                ],
+                "correcta": 1,
+                "explicacion": "Norma inferior no puede contradecir norma superior."
+            },
+            {
+                "texto": "Una norma no se publica y multan por incumplirla. ¿Qué falla?",
+                "opciones": [
+                    "Publicidad de las normas",
+                    "Legalidad",
+                    "Responsabilidad",
+                    "Arbitrariedad"
+                ],
+                "correcta": 0,
+                "explicacion": "Las normas deben publicarse para poder conocerse."
+            },
+            {
+                "texto": "Una ley nueva sanciona una conducta que era legal cuando se hizo. ¿Qué falla?",
+                "opciones": [
+                    "Responsabilidad",
+                    "Irretroactividad",
+                    "Jerarquía normativa",
+                    "Seguridad jurídica"
+                ],
+                "correcta": 1,
+                "explicacion": "No se puede sancionar retroactivamente lo que era legal."
+            },
+            {
+                "texto": "El Ayuntamiento causa daños por una obra y no quiere indemnizar. ¿Qué principio?",
+                "opciones": [
+                    "Responsabilidad",
+                    "Publicidad",
+                    "Legalidad",
+                    "Jerarquía"
+                ],
+                "correcta": 0,
+                "explicacion": "Los poderes públicos responden por los daños que causen cuando proceda."
+            },
+            {
+                "texto": "Un alcalde concede licencia a un amigo y la niega a otro sin motivo. ¿Qué principio?",
+                "opciones": [
+                    "Irretroactividad",
+                    "Publicidad",
+                    "Interdicción de la arbitrariedad",
+                    "Seguridad jurídica"
+                ],
+                "correcta": 2,
+                "explicacion": "Actuar por capricho vulnera la interdicción de la arbitrariedad."
+            },
+            {
+                "texto": "¿Cuál pareja es correcta?",
+                "opciones": [
+                    "Art.1 - Lenguas",
+                    "Art.2 - Capital",
+                    "Art.3 - Lenguas",
+                    "Art.4 - Soberanía"
+                ],
+                "correcta": 2,
+                "explicacion": "Artículo 3 regula las lenguas."
+            },
+            {
+                "texto": "¿Cuál pareja es incorrecta?",
+                "opciones": [
+                    "Art.1 - Valores superiores",
+                    "Art.2 - Unidad y autonomía",
+                    "Art.3 - Bandera",
+                    "Art.5 - Capital"
+                ],
+                "correcta": 2,
+                "explicacion": "La bandera es artículo 4."
+            },
+            {
+                "texto": "¿Cuál pertenece al artículo 1 y NO al 9.3?",
+                "opciones": [
+                    "Seguridad jurídica",
+                    "Legalidad",
+                    "Pluralismo político",
+                    "Jerarquía normativa"
+                ],
+                "correcta": 2,
+                "explicacion": "Pluralismo político es valor superior del artículo 1."
+            },
+            {
+                "texto": "¿Cuál pertenece al artículo 9.3 y NO al artículo 1?",
+                "opciones": [
+                    "Libertad",
+                    "Justicia",
+                    "Igualdad",
+                    "Responsabilidad"
+                ],
+                "correcta": 3,
+                "explicacion": "Responsabilidad es principio del artículo 9.3."
+            },
+            {
+                "texto": "¿Qué artículo habla de partidos políticos?",
+                "opciones": [
+                    "Artículo 6",
+                    "Artículo 7",
+                    "Artículo 8",
+                    "Artículo 9"
+                ],
+                "correcta": 0,
+                "explicacion": "Partidos políticos = artículo 6."
+            },
+            {
+                "texto": "¿Qué artículo habla de sindicatos y asociaciones empresariales?",
+                "opciones": [
+                    "Artículo 6",
+                    "Artículo 7",
+                    "Artículo 8",
+                    "Artículo 9"
+                ],
+                "correcta": 1,
+                "explicacion": "Sindicatos y asociaciones empresariales = artículo 7."
+            },
+            {
+                "texto": "¿Qué artículo habla de Fuerzas Armadas?",
+                "opciones": [
+                    "Artículo 6",
+                    "Artículo 7",
+                    "Artículo 8",
+                    "Artículo 9"
+                ],
+                "correcta": 2,
+                "explicacion": "Fuerzas Armadas = artículo 8."
+            },
+            {
+                "texto": "¿Qué artículo recoge legalidad, jerarquía normativa y seguridad jurídica?",
+                "opciones": [
+                    "Artículo 1",
+                    "Artículo 2",
+                    "Artículo 8",
+                    "Artículo 9"
+                ],
+                "correcta": 3,
+                "explicacion": "Es el artículo 9.3."
+            }
+        ];
+
+        function cargarTest() {
+            const contenedor = document.getElementById("contenedorTest");
+            preguntas.forEach((pregunta, indice) => {
+                const bloque = document.createElement("div");
+                bloque.className = "bloque";
+                bloque.id = `bloque${indice}`;
+                let html = `<h3>${indice + 1}. ${pregunta.texto}</h3>`;
+                pregunta.opciones.forEach((opcion, i) => {
+                    html += `<label><input type="radio" name="p${indice}" value="${i}" onchange="corregirPregunta(${indice}, ${i})"> ${String.fromCharCode(97 + i)}) ${opcion}</label><br>`;
+                });
+                html += `<p id="feedback${indice}"></p><hr>`;
+                bloque.innerHTML = html;
+                contenedor.appendChild(bloque);
+            });
+        }
+
+        function corregirPregunta(indice, respuestaUsuario) {
+            const pregunta = preguntas[indice];
+            const feedback = document.getElementById(`feedback${indice}`);
+            const bloque = document.getElementById(`bloque${indice}`);
+            if (respuestaUsuario === pregunta.correcta) {
+                feedback.innerHTML = `✅ <strong>Correcta.</strong> ${pregunta.explicacion}`;
+                feedback.className = "correcta";
+                bloque.style.border = "2px solid #2e7d32";
+            } else {
+                feedback.innerHTML = `❌ <strong>Incorrecta.</strong> La correcta es <strong>${String.fromCharCode(97 + pregunta.correcta)}) ${pregunta.opciones[pregunta.correcta]}</strong>. ${pregunta.explicacion}`;
+                feedback.className = "incorrecta";
+                bloque.style.border = "2px solid #c62828";
+            }
+        }
+
+        function calcularResultado() {
+            let nota = 0;
+            preguntas.forEach((pregunta, indice) => {
+                const seleccionada = document.querySelector(`input[name="p${indice}"]:checked`);
+                if (seleccionada && Number(seleccionada.value) === pregunta.correcta) nota++;
+            });
+            let mensaje = "";
+            if (nota >= 45) mensaje = "Excelente. Título Preliminar blindado. Ya podemos pasar al artículo 10.";
+            else if (nota >= 40) mensaje = "Muy bien, pero antes de avanzar conviene repasar los fallos.";
+            else if (nota >= 35) mensaje = "Aprobado, pero el bloque todavía no está blindado.";
+            else mensaje = "Necesita repaso. Vuelve a los artículos y repite el examen.";
+            document.getElementById("resultado").innerHTML =
+                `<div class="ok"><h3>Resultado: ${nota} / 50</h3><p>${mensaje}</p></div>`;
+        }
+        cargarTest();
+    </script>
+</body>
+
+</html>
